@@ -17,7 +17,7 @@ public class World {
             blocos.add(new Blocks(0,yy*32));
         }
         for(int yy = 0; yy<15; yy++){
-            blocos.add(new Blocks(480-32,yy*32));
+            blocos.add(new Blocks(640-32,yy*32));
         }
 
     }

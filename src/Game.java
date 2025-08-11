@@ -8,7 +8,8 @@ import java.awt.image.BufferStrategy;
 public class Game extends Canvas implements Runnable, KeyListener {
 
 
-    public static int width= 480, height= 480; //definindo o tamanho da janela do jogo
+    public static int width= 640, height= 480; //definindo o tamanho da janela do jogo
+    public static int SCALE = 3;
     public Player player;
     public World wolrd;
 
@@ -17,6 +18,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
     public Game() {
             this.addKeyListener(this);
             this.setPreferredSize(new Dimension(width,height));
+            new Spritesheet();
 
             player = new Player(32,32);
             wolrd = new World();
@@ -41,8 +43,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     Graphics g = bs.getDrawGraphics();
 
-    g.setColor(Color.black);
-    g.fillRect(0,0,width,height);
+    g.setColor(Color.blue);
+    g.fillRect(0,0,width*SCALE,height*SCALE);
 
 
     player.render(g);
@@ -101,33 +103,39 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode()==KeyEvent.VK_RIGHT){
+        if(e.getKeyCode()==KeyEvent.VK_D){
             player.right=true;
         }
-        else if (e.getKeyCode()==KeyEvent.VK_LEFT){
+        else if (e.getKeyCode()==KeyEvent.VK_A){
             player.left=true;
         }
-        if(e.getKeyCode()==KeyEvent.VK_UP){
+        if(e.getKeyCode()==KeyEvent.VK_W){
             player.up=true;
         }
-        else if (e.getKeyCode()==KeyEvent.VK_DOWN){
+        else if (e.getKeyCode()==KeyEvent.VK_S){
             player.down=true;
+        }
+        if (e.getKeyCode()==KeyEvent.VK_Q){
+            player.shoot = true;
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if(e.getKeyCode()==KeyEvent.VK_RIGHT){
+        if(e.getKeyCode()==KeyEvent.VK_D){
             player.right=false;
         }
-        else if (e.getKeyCode()==KeyEvent.VK_LEFT){
+        else if (e.getKeyCode()==KeyEvent.VK_A){
             player.left=false;
         }
-        if(e.getKeyCode()==KeyEvent.VK_UP){
+        if(e.getKeyCode()==KeyEvent.VK_W){
             player.up=false;
         }
-        else if (e.getKeyCode()==KeyEvent.VK_DOWN){
+        else if (e.getKeyCode()==KeyEvent.VK_S){
             player.down=false;
+        }
+        if (e.getKeyCode()==KeyEvent.VK_Q){
+            player.shoot = false;
         }
     }
 }
